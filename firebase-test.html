@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Bağlantı Testi</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .status {
+            font-size: 1.2em;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .success {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+        
+        .firebase-logo {
+            width: 60px;
+            height: 60px;
+            margin: 20px auto;
+            background: #FFA611;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="firebase-logo">🔥</div>
+        <h1>Firebase Bağlantı Testi</h1>
+        <div id="status" class="status">
+            Firebase bağlantısı kontrol ediliyor...
+        </div>
+        <div class="info">
+            <h3>Nasıl Çalıştırılır:</h3>
+            <p>1. Bu HTML dosyasını bilgisayarınıza kaydedin</p>
+            <p>2. Çift tıklayarak tarayıcıda açın</p>
+            <p>3. Tarayıcının konsolunu açın (F12)</p>
+            <p>4. Konsolda <code>"Firebase bağlantısı başarılı!"</code> mesajını göreceksiniz</p>
+        </div>
+    </div>
+
+    <!-- Firebase CDN Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEixnu9V13nWoHTtCZ7jGwjmcUrCGNRM",
+            authDomain: "batuhanyilmazdeeplearning.firebaseapp.com",
+            projectId: "batuhanyilmazdeeplearning",
+            storageBucket: "batuhanyilmazdeeplearning.firebasestorage.app",
+            messagingSenderId: "1074245540232",
+            appId: "1:1074245540232:web:0bc1ba9a2cb1e792cfc23d",
+            measurementId: "G-G2HWKQNV3N"
+        };
+
+        try {
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            console.log("Firebase bağlantısı başarılı!");
+            
+            // Sayfada da başarı mesajını göster
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = '✅ Firebase bağlantısı başarılı!';
+            statusDiv.classList.add('success');
+            
+        } catch (error) {
+            console.error("Firebase bağlantısı hatası:", error);
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = '❌ Firebase bağlantısında hata oluştu!';
+            statusDiv.style.background = 'rgba(231, 76, 60, 0.2)';
+            statusDiv.style.borderColor = '#e74c3c';
+            statusDiv.style.color = '#e74c3c';
+        }
+    </script>
+</body>
+</html>
